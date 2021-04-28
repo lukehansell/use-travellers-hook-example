@@ -8,9 +8,10 @@ const createEmptyTraveller = () => ({
 
 const useTraveller = (defaultTravellersCount = 1) => {
   // creating the default travellers blank data
-  const defaultTravellers = new Array(defaultTravellersCount).fill(
-    createEmptyTraveller()
-  );
+  const defaultTravellers = [];
+  for (let i = 0; i < defaultTravellersCount; i++) {
+    defaultTravellers.push(createEmptyTraveller());
+  }
 
   const [travellers, setTravellers] = useState(defaultTravellers);
 
@@ -26,6 +27,7 @@ const useTraveller = (defaultTravellersCount = 1) => {
   };
 
   const update = (i, key, value) => {
+    console.log("in hook", i, key, value);
     setTravellers((travellers) => {
       const updated = [...travellers];
       updated[i][key] = value;
